@@ -55,10 +55,15 @@
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <!-- add contents here -->
-            <div id="app">
-              <!-- <header></header> -->
-              <top-header></top-header>
-              <router-view />
+            <div>
+              <h3>
+                <h5
+                  class="dashboard"
+                  v-for="dashboard in dashboards"
+                  :key="dashboard.char_id"
+                >{{dashboard.name}}</h5>
+                <h4>Hello World</h4>
+              </h3>
             </div>
           </v-col>
         </v-row>
@@ -71,35 +76,60 @@
 </template>
 
 <script>
-import Header from "./components/Top-Header";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
-  components: {
-    "top-header": Header
-  },
   data() {
     return {
-      blah: "erik"
+      dashboards: "",
+      drawer: null,
+      about: [
+        /*{ text: 'Register', route: '/register' },
+        { text: 'Home', route: '/' },
+        { text: 'Login', route: '/login' },
+        { text: 'Secret', route: '/secret' },
+        */
+        { text: 'About', route: '/about' }
+        //{ icon: 'folder', text: 'My Projects', route: '/projects' },
+        //{ icon: 'person', text: 'Team', route: '/team' },
+      ],
+      home: [
+        { text: 'Home', route: '/' }
+      ],
+      register: [
+        { text: 'Register', route: '/register' }
+      ],
+      dashboard: [
+        { text: 'Dashboard', route: '/dashboard' }
+      ],
+      login: [
+        { text: 'Login', route: '/login' }
+      ]
     };
-  }
-};
-</script>  
-
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+  },
+  mounted() {
+    this.getDashboards();
+  },
+  methods: {
+    async getDashboards() {
+      const token = await firebase.auth().currentUser.getIdToken();
+      let config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      this.dashboards = await this.$axios.get(
+        "http://localhost:3000/erik",
+        config
+      );
+      this.dashboards = this.dashboards.data;
     }
   }
+};
+</script>
+
+<style lang="scss" scoped>
+div {
+  color: inherit;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="text-align:right; margin:0px auto 0px auto;">
     Logged in
     <div v-if="loggedIn">Yes</div>
     <div v-else>No</div>
