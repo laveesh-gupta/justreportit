@@ -48,6 +48,8 @@
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Our app</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -57,7 +59,7 @@
             <!-- add contents here -->
             <div id="app">
               <!-- <header></header> -->
-              <top-header></top-header>
+              <!-- <top-header></top-header> -->
               <router-view />
             </div>
           </v-col>
@@ -65,19 +67,20 @@
       </v-container>
     </v-content>
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text">&copy; 2020 JustAnotherTeam</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import Header from "./components/Top-Header";
+//import Header from "./components/Top-Header";
 export default {
   components: {
-    "top-header": Header
+    //"top-header": Header
   },
   data() {
     return {
+      drawer: null,
       blah: "erik"
     };
   }

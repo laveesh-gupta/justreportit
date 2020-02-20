@@ -55,6 +55,8 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Our app</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -71,15 +73,17 @@
             md="4">
             <!-- add contents here -->
             <div>
-                <h3>Login</h3>
+                <h2>Login</h2><br />
                 <form @submit.prevent="pressed">
-                    <div class="login">
-                        <input type="text" placeholder="login" v-model="email" />
+                    <div class="Email">
+                        <!-- <input type="text" placeholder="login" v-model="email" /> -->
+                        <v-text-field label="Filled" single-line filled placeholder="Email" v-model="email"></v-text-field>
                     </div>
-                    <div class="password">
-                        <input type="password" placeholder="password" v-model="password" />
+                    <div class="Password">
+                        <!-- <input type="password" placeholder="password" v-model="password" /> -->
+                        <v-text-field label="Filled" single-line filled type="password" placeholder="Password" v-model="password"></v-text-field>
                     </div>
-                    <button>Login</button>
+                    <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
                 </form>
                 <div class="error" v-if="error">{{error.message}}</div>
             </div>
@@ -91,7 +95,7 @@
       color="indigo"
       app
     >
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text">&copy; 2020 JustAnotherTeam</span>
     </v-footer>
   </v-app>
 </template>
@@ -142,11 +146,35 @@ export default {
         .catch(error => {
           this.error = error;
         });
+    },
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log("signed in");
+          this.loggedIn = true;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+      });
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
     }
   },
   props: {
       source: String,
   },
+  mounted() {
+    this.setupFirebase();
+  }
 };
 
 </script>
@@ -167,6 +195,6 @@ button {
   font-size: 100%;
 }
 .error {
-  color: red;
+  color: white;
 }
 </style>

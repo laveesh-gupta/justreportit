@@ -48,6 +48,8 @@
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Our app</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -56,17 +58,33 @@
           <v-col class="text-center">
             <!-- add contents here -->
             <div>
-              <div class="error" v-if="error">{{error.message}}</div>
+              <h2>Register</h2>
+              <br />
               <form @submit.prevent="pressed">
-                Register
-                <div class="email">
-                  <input type="email" v-model="email" placeholder="email" />
+                <div class="Email">
+                  <!-- <input type="email" v-model="email" placeholder="email" /> -->
+                  <v-text-field
+                    label="Filled"
+                    single-line
+                    filled
+                    v-model="email"
+                    placeholder="Email"
+                  ></v-text-field>
                 </div>
-                <div class="password">
-                  <input type="password" v-model="password" placeholder="password" />
+                <div class="Password">
+                  <!-- <input type="password" v-model="password" placeholder="password" /> -->
+                  <v-text-field
+                    label="Filled"
+                    single-line
+                    filled
+                    type="password"
+                    v-model="password"
+                    placeholder="Password"
+                  ></v-text-field>
                 </div>
-                <v-btn class="ma-2" outlined color="indigo" type="submit">Register</v-btn>
+                <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
               </form>
+              <div class="error" v-if="error">{{error.message}}</div>
             </div>
           </v-col>
         </v-row>
@@ -94,22 +112,14 @@ export default {
         { text: 'Login', route: '/login' },
         { text: 'Secret', route: '/secret' },
         */
-        { text: 'About', route: '/about' }
+        { text: "About", route: "/about" }
         //{ icon: 'folder', text: 'My Projects', route: '/projects' },
         //{ icon: 'person', text: 'Team', route: '/team' },
       ],
-      home: [
-        { text: 'Home', route: '/' }
-      ],
-      register: [
-        { text: 'Register', route: '/register' }
-      ],
-      dashboard: [
-        { text: 'Dashboard', route: '/dashboard' }
-      ],
-      login: [
-        { text: 'Login', route: '/login' }
-      ]
+      home: [{ text: "Home", route: "/" }],
+      register: [{ text: "Register", route: "/register" }],
+      dashboard: [{ text: "Dashboard", route: "/dashboard" }],
+      login: [{ text: "Login", route: "/login" }]
     };
   },
   methods: {
@@ -122,14 +132,38 @@ export default {
           this.$router.replace({ name: "dashboard" });
         })
         .catch(error => (this.error = error));
+    },
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log("signed in");
+          this.loggedIn = true;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+      });
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
     }
+  },
+  mounted() {
+    this.setupFirebase();
   }
 };
 </script>
 
 <style lang="scss" scoped>
 .error {
-  color: red;
+  color: white;
   font-size: 18px;
 }
 input {

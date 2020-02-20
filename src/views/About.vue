@@ -48,6 +48,8 @@
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Our app</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
 
     <v-content>
@@ -79,6 +81,8 @@ export default {
   }
 }
 */
+import * as firebase from "firebase/app";
+import "firebase/auth";
 export default {
   props: {
     source: String
@@ -101,6 +105,32 @@ export default {
       dashboard: [{ text: "Dashboard", route: "/dashboard" }],
       login: [{ text: "Login", route: "/login" }]
     };
+  },
+  mounted() {
+    this.setupFirebase();
+  },
+  methods: {
+    setupFirebase() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          // User is signed in.
+          console.log("signed in");
+          this.loggedIn = true;
+        } else {
+          // No user is signed in.
+          this.loggedIn = false;
+          console.log("signed out", this.loggedIn);
+        }
+      });
+    },
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({ name: "login" });
+        });
+    }
   }
 };
 </script>
