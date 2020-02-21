@@ -12,13 +12,14 @@ Vue.prototype.$axios = axios;
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyC36dbzd9bk16WzgXCcO5opT8mdvk4HTdE",
-    authDomain: "myapp-642e6.firebaseapp.com",
-    databaseURL: "https://myapp-642e6.firebaseio.com",
-    projectId: "myapp-642e6",
-    storageBucket: "myapp-642e6.appspot.com",
-    messagingSenderId: "398228149616",
-    appId: "1:398228149616:web:35889667efc0eb6e4d6bb5"
+  apiKey: "AIzaSyBRz6EKxLotinJ7RF2an944FimlpQY6IZQ",
+    authDomain: "web-app-1a457.firebaseapp.com",
+    databaseURL: "https://web-app-1a457.firebaseio.com",
+    projectId: "web-app-1a457",
+    storageBucket: "web-app-1a457.appspot.com",
+    messagingSenderId: "337132330862",
+    appId: "1:337132330862:web:a7c1f27b73ff2a76cc6b7f"
+
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
