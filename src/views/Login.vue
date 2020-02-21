@@ -15,7 +15,7 @@
         </v-list-item>
         <v-list-item link v-for="link in dashboard" :key="link.text" router :to="link.route">
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-laptop</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dashboard</v-list-item-title>
@@ -54,7 +54,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Our app</v-toolbar-title>
+      <v-toolbar-title>JustReportIt</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
@@ -174,6 +174,7 @@ export default {
   },
   mounted() {
     this.setupFirebase();
+          this.$vuetify.theme.dark = true
   }
 };
 

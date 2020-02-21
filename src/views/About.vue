@@ -12,7 +12,7 @@
         </v-list-item>
         <v-list-item link v-for="link in dashboard" :key="link.text" router :to="link.route">
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-laptop</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dashboard</v-list-item-title>
@@ -47,14 +47,14 @@
 
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Our app</v-toolbar-title>
+      <v-toolbar-title>JustReportIt</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
 <br />
     <v-card
     max-width="400"
-    class="mx-auto"
+    class="mx-auto my-12"
   >
     <v-list-item>
      
@@ -81,7 +81,6 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-  <br />
   <v-card
     max-width="400"
     class="mx-auto"
@@ -111,7 +110,6 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-  <br />
   <v-card
     max-width="400"
     class="mx-auto"
@@ -142,7 +140,7 @@
     </v-card-actions>
   </v-card>
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text">&copy; 2020 JustAnotherTeam</span>
     </v-footer>
   </v-app>
 </template>
@@ -185,6 +183,7 @@ export default {
   },
   mounted() {
     this.setupFirebase();
+          this.$vuetify.theme.dark = true
   },
   methods: {
     setupFirebase() {

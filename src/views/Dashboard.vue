@@ -12,7 +12,7 @@
         </v-list-item>
         <v-list-item link v-for="link in dashboard" :key="link.text" router :to="link.route">
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-laptop</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Dashboard</v-list-item-title>
@@ -47,7 +47,7 @@
 
     <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Our app</v-toolbar-title>
+      <v-toolbar-title>JustReportIt</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
@@ -57,15 +57,34 @@
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <!-- add contents here -->
-            <label>Name:</label>
+            <!-- <label>Name:</label>
             <input type="text" v-model="name"/>
-            <button @click="submitName()">Add</button>
+            <button @click="submitName()">Add</button>-->
+
+            <div id="reports">
+              <h3>Report the reason</h3>
+              <br />
+              <form @submit.prevent="submitPressed">
+                <div class="Type here">
+                  <v-text-field
+                    label="Filled"
+                    single-line
+                    filled
+                    placeholder="Type here"
+                    v-model="report"
+                    required
+                  ></v-text-field>
+                </div>
+                <v-btn class="ma-2" outlined color="indigo" type="submit">Submit</v-btn>
+              </form>
+              <div class="error" v-if="error">{{error.message}}</div>
+            </div>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
     <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text">&copy; 2020 JustAnotherTeam</span>
     </v-footer>
   </v-app>
 </template>
@@ -73,11 +92,14 @@
 <script>
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import { namesRef } from "../main"
+import db from "../main"
+
+// import { namesRef } from "../main"
 export default {
   data() {
     return {
-      dashboards: "",
+      // dashboards: "",
+      //name: reports,
       drawer: null,
       about: [
         /*{ text: 'Register', route: '/register' },
@@ -101,26 +123,43 @@ export default {
       login: [
         { text: 'Login', route: '/login' }
       ],
-      name: 'Laveesh'
+      // name: 'Laveesh'
+      report: null
+      
     };
   },
   mounted() {
-    this.getDashboards();
+    // this.getDashboards();
     this.setupFirebase();
+          this.$vuetify.theme.dark = true
   },
   methods: {
-    async getDashboards() {
-      const token = await firebase.auth().currentUser.getIdToken();
-      let config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
-      this.dashboards = await this.$axios.get(
-        "http://localhost:8080/",
-        config
-      );
-      this.dashboards = this.dashboards.data;
+    // async getDashboards() {
+    //   const token = await firebase.auth().currentUser.getIdToken();
+    //   let config = {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`
+    //     }
+    //   };
+    //   this.dashboards = await this.$axios.get(
+    //     "http://localhost:8080/",
+    //     config
+    //   );
+    //   this.dashboards = this.dashboards.data;
+    // },
+
+
+    submitPressed(){
+      db.collection('reports').add({
+        report: this.report
+      })
+      .then(docRef => {
+            console.log('Report added: ', docRef.id)
+            this.$router.push('/')
+          })
+          .catch(error => {
+            console.error('Error adding report: ', error)
+          })
     },
     setupFirebase() {
       firebase.auth().onAuthStateChanged(user => {
@@ -142,10 +181,10 @@ export default {
         .then(() => {
           this.$router.replace({ name: "login" });
         });
-    },
-    submitName() {
-      namesRef.push({names: this.name})
     }
+    // submitName() {
+    //   namesRef.push({names: this.name})
+    // }
   }
 };
 </script>
