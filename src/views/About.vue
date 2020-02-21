@@ -51,19 +51,96 @@
       <v-spacer></v-spacer>
       <v-btn rounded color="primary" dark class="but" @click="signOut">Sign In/Out</v-btn>
     </v-app-bar>
+<br />
+    <v-card
+    max-width="400"
+    class="mx-auto"
+  >
+    <v-list-item>
+     
+      <v-list-item-content>
+        <v-list-item-title class="headline">Laveesh Gupta</v-list-item-title>
+        <v-list-item-subtitle>Co-founder</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
 
-    <v-content>
-      <v-container class="fill-height" fluid>
-        <v-row align="center" justify="center">
-          <v-col class="text-center">
-            <!-- add contents here -->
-            <div class="about">
-              <h1>This is an about page</h1>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+    <v-img src="https://avatars0.githubusercontent.com/u/44422144?s=400&v=4"></v-img>
+
+    <v-card-text>
+        Currently a student at RIT. Back-end web developer.
+    </v-card-text>
+
+    <v-card-actions>
+     
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-share-variant</v-icon>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  <br />
+  <v-card
+    max-width="400"
+    class="mx-auto"
+  >
+    <v-list-item>
+     
+      <v-list-item-content>
+        <v-list-item-title class="headline">Shreya Modi and Nikunj Das Kasat</v-list-item-title>
+        <v-list-item-subtitle>Co-founders</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-img src="https://scontent-maa2-1.xx.fbcdn.net/v/t1.0-9/p960x960/75419046_2509983552418428_5687236856882659328_o.jpg?_nc_cat=101&_nc_ohc=XBmZ2GtiP9oAX9lhHI3&_nc_ht=scontent-maa2-1.xx&_nc_tp=6&oh=f5ee00b6f147070ca1d6a39e55d3f9ae&oe=5EF78793" height="350"></v-img>
+
+    <v-card-text>
+        Currently a student at RIT. Front-end web developer.
+    </v-card-text>
+
+    <v-card-actions>
+     
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-share-variant</v-icon>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+  <br />
+  <v-card
+    max-width="400"
+    class="mx-auto"
+  >
+    <v-list-item>
+     
+      <v-list-item-content>
+        <v-list-item-title class="headline">Muskan Gupta</v-list-item-title>
+        <v-list-item-subtitle>Co-founder</v-list-item-subtitle>
+      </v-list-item-content>
+    </v-list-item>
+
+    <v-img src="https://scontent-maa2-2.xx.fbcdn.net/v/t1.0-9/73262108_1628091597327993_6942370946682454016_n.jpg?_nc_cat=103&_nc_ohc=ZvnuMd32dXcAX8fAtJu&_nc_ht=scontent-maa2-2.xx&oh=4ebb46c251f3e41ff00a16b25e38db00&oe=5EC4C3A3"></v-img>
+
+    <v-card-text>
+        Currently a student at RIT. Front end web developer.
+    </v-card-text>
+
+    <v-card-actions>
+     
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn icon>
+        <v-icon>mdi-share-variant</v-icon>
+      </v-btn>
+    </v-card-actions>
+  </v-card>
     <v-footer color="indigo" app>
       <span class="white--text">&copy; 2019</span>
     </v-footer>

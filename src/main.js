@@ -36,6 +36,9 @@ firebase.auth().onAuthStateChanged(user => {
   }
 });
 
+export const db = app.database();
+export const namesRef = db.ref('names');
+
 // app = new Vue({
 //   router,
 //   store,

@@ -57,16 +57,9 @@
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <!-- add contents here -->
-            <div>
-              <h3>
-                <h5
-                  class="dashboard"
-                  v-for="dashboard in dashboards"
-                  :key="dashboard.char_id"
-                >{{dashboard.name}}</h5>
-                <h4>Hello World</h4>
-              </h3>
-            </div>
+            <label>Name:</label>
+            <input type="text" v-model="name"/>
+            <button @click="submitName()">Add</button>
           </v-col>
         </v-row>
       </v-container>
@@ -80,6 +73,7 @@
 <script>
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { namesRef } from "../main"
 export default {
   data() {
     return {
@@ -106,7 +100,8 @@ export default {
       ],
       login: [
         { text: 'Login', route: '/login' }
-      ]
+      ],
+      name: 'Laveesh'
     };
   },
   mounted() {
@@ -122,7 +117,7 @@ export default {
         }
       };
       this.dashboards = await this.$axios.get(
-        "http://localhost:3000/erik",
+        "http://localhost:8080/",
         config
       );
       this.dashboards = this.dashboards.data;
@@ -147,6 +142,9 @@ export default {
         .then(() => {
           this.$router.replace({ name: "login" });
         });
+    },
+    submitName() {
+      namesRef.push({names: this.name})
     }
   }
 };

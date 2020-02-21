@@ -8,7 +8,10 @@ import Dashboard from "../views/Dashboard.vue";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
+//import VueFire from 'vuefire'
+
 Vue.use(VueRouter);
+//Vue.use(VueFire)
 
 const routes = [
   {

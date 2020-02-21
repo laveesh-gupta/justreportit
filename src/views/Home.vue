@@ -57,6 +57,20 @@
         <v-row align="center" justify="center">
           <v-col class="text-center">
             <!-- add contents here -->
+            
+            <!-- <form onsubmit="{this.handleSubmit}" action>
+              <input ref="this.input" type="text" placeholder="enter location" />
+              <button
+                onclick="{this.handleSubmit}">Send Air Report!</button>
+            </form>
+            <div className = "displayData">
+            <h2>{<a href="https://airnow.gov/aqi/aqi-basics" target ="blank">Air quality index: </a>} {airData.country_aqi}</h2>
+                <h3>{`You have ${airData.breezometer_description.toLowerCase()}!`}</h3>
+                <h4>{`Main pollutant: ${airData.dominant_pollutant_description}`}</h4>
+                <h4>{`Recommendation: ${airData.random_recommendations.health}!`}</h4>
+
+            </div>
+            -->
           </v-col>
         </v-row>
       </v-container>
@@ -78,13 +92,22 @@ export default {
   }
 }
 */
+//import getCords from "./getCords.js";
+//import getAirData from "./getAirData.js";
+//import store from './Store.js';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 export default {
   props: {
-    source: String
+    source: String,
+    /*state : {
+            airData: null
+        }
+    */
   },
+  
   data() {
+    //const { airData } = this.state
     return {
       loggedIn: false,
       drawer: null,
@@ -106,6 +129,10 @@ export default {
   },
   mounted() {
     this.setupFirebase();
+    /*store.on('airData', airData => {
+            this.setState({ airData })
+        });
+    */
   },
   methods: {
     setupFirebase() {
@@ -128,7 +155,26 @@ export default {
         .then(() => {
           this.$router.replace({ name: "login" });
         });
+    },
+    /*async handleSubmit(e) {
+      e.preventDefault();
+      let userInput = this.input.value.trim();
+
+      if (userInput.length < 1) {
+        return;
+      }
+
+      const result = await getCords(userInput);
+      if (!result) {
+        console.log("no result");
+        return;
+      }
+
+      const { lat, lng } = result;
+
+      store.airData = await getAirData(lat, lng);
     }
+    */
   }
 };
 </script>
