@@ -82,7 +82,9 @@
                     v-model="password"
                   ></v-text-field>
                 </div>
-                <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
+                <div class="button">
+                  <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
+                </div>
               </form>
               <div class="error" v-if="error">{{error.message}}</div>
             </div>
