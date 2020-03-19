@@ -72,16 +72,8 @@
 
             </div>
             -->
-            <v-text-field
-            label="Enter longitude"
-            single-line
-            outlined
-          ></v-text-field>
-          <v-text-field
-            label="Enter latitude"
-            single-line
-            outlined
-          ></v-text-field>
+            <v-text-field label="Enter longitude" single-line outlined></v-text-field>
+            <v-text-field label="Enter latitude" single-line outlined></v-text-field>
             <div id="App">
               <v-container class="my-5">
                 <v-layout row wrap justify-center>
@@ -95,8 +87,8 @@
                     >Get Location by GPS</v-btn>
                   </v-flex>
                 </v-layout>
-                <br>
-                <br>
+                <br />
+                <br />
                 <v-layout row wrap justify-center>
                   <v-flex xs6 md4>
                     <v-btn
@@ -108,8 +100,8 @@
                     >Get Status</v-btn>
                   </v-flex>
                 </v-layout>
-                <br>
-                <br>
+                <br />
+                <br />
                 <v-layout row wrap justify-center my="4">
                   <v-flex xs6 md4>
                     <div>
@@ -122,10 +114,11 @@
                     </div>
                   </v-flex>
                 </v-layout>
-                <br>
-                    <div v-for="(value, name, index) in health_recommendations" :key="index">
-                        <strong>{{name}}</strong>: {{value}}
-                    </div>
+                <br />
+                <div v-for="(value, name, index) in health_recommendations" :key="index">
+                  <strong>{{name}}</strong>
+                  : {{value}}
+                </div>
               </v-container>
               <!-- AQI: {{ aqi }}
     <br>
@@ -189,9 +182,9 @@ export default {
       aqi: null,
       category: null,
       health_recommendations: null,
-      error: "", 
-      lat: 12.97194, 
-      lon: 77.59369 
+      error: "",
+      lat: 12.97194,
+      lon: 77.59369
     };
   },
   mounted() {
@@ -235,7 +228,8 @@ export default {
             // eslint-disable-next-line no-sequences
             (this.aqi = response.data.data.indexes.baqi.aqi),
             (this.category = response.data.data.indexes.baqi.category),
-            (this.health_recommendations = response.data.data.health_recommendations)
+            (this.health_recommendations =
+              response.data.data.health_recommendations)
           )
         );
     },

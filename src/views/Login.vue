@@ -1,9 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
         <v-list-item link v-for="link in home" :key="link.text" router :to="link.route">
           <v-list-item-action>
@@ -48,11 +45,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="indigo"
-      dark
-    >
+    <v-app-bar app color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>JustReportIt</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -60,41 +53,44 @@
     </v-app-bar>
 
     <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          align="center"
-          justify="center"
-        >
-          <v-col cols="12"
-            sm="8"
-            md="4">
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="8" md="4">
             <!-- add contents here -->
             <div>
-                <h2>Login</h2><br />
-                <form @submit.prevent="pressed">
-                    <div class="Email">
-                        <!-- <input type="text" placeholder="login" v-model="email" /> -->
-                        <v-text-field label="Filled" single-line filled placeholder="Email" v-model="email"></v-text-field>
-                    </div>
-                    <div class="Password">
-                        <!-- <input type="password" placeholder="password" v-model="password" /> -->
-                        <v-text-field label="Filled" single-line filled type="password" placeholder="Password" v-model="password"></v-text-field>
-                    </div>
-                    <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
-                </form>
-                <div class="error" v-if="error">{{error.message}}</div>
+              <h2>Login</h2>
+              <br />
+              <form @submit.prevent="pressed">
+                <div class="Email">
+                  <!-- <input type="text" placeholder="login" v-model="email" /> -->
+                  <v-text-field
+                    label="Filled"
+                    single-line
+                    filled
+                    placeholder="Email"
+                    v-model="email"
+                  ></v-text-field>
+                </div>
+                <div class="Password">
+                  <!-- <input type="password" placeholder="password" v-model="password" /> -->
+                  <v-text-field
+                    label="Filled"
+                    single-line
+                    filled
+                    type="password"
+                    placeholder="Password"
+                    v-model="password"
+                  ></v-text-field>
+                </div>
+                <v-btn class="ma-2" outlined color="indigo" type="submit">Click Me</v-btn>
+              </form>
+              <div class="error" v-if="error">{{error.message}}</div>
             </div>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
-    <v-footer
-      color="indigo"
-      app
-    >
+    <v-footer color="indigo" app>
       <span class="white--text">&copy; 2020 JustAnotherTeam</span>
     </v-footer>
   </v-app>
@@ -116,22 +112,14 @@ export default {
         { text: 'Login', route: '/login' },
         { text: 'Secret', route: '/secret' },
         */
-        { text: 'About', route: '/about' }
+        { text: "About", route: "/about" }
         //{ icon: 'folder', text: 'My Projects', route: '/projects' },
         //{ icon: 'person', text: 'Team', route: '/team' },
       ],
-      home: [
-        { text: 'Home', route: '/' }
-      ],
-      register: [
-        { text: 'Register', route: '/register' }
-      ],
-      dashboard: [
-        { text: 'Dashboard', route: '/dashboard' }
-      ],
-      login: [
-        { text: 'Login', route: '/login' }
-      ]
+      home: [{ text: "Home", route: "/" }],
+      register: [{ text: "Register", route: "/register" }],
+      dashboard: [{ text: "Dashboard", route: "/dashboard" }],
+      login: [{ text: "Login", route: "/login" }]
     };
   },
   methods: {
@@ -170,14 +158,13 @@ export default {
     }
   },
   props: {
-      source: String,
+    source: String
   },
   mounted() {
     this.setupFirebase();
-          this.$vuetify.theme.dark = true
+    this.$vuetify.theme.dark = true;
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
